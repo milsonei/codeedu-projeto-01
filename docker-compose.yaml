@@ -3,7 +3,7 @@ version: "3"
 services:
   #PHP Service
   app:
-    #build: .
+    build: .
     image: milsonei/code-education-laravel-app
     container_name: app
     volumes:
