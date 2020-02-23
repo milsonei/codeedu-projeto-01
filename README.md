@@ -21,19 +21,26 @@ Acesse o contêiner da aplicação app
 docker exec -it app bash 
 ```
 
+Agora no bash do contêiner, execute os comandos abaixo:
+
 Instale o composer
 ```
-bash-5.0# composer install 
+composer install 
+```
+
+Crie o arquivo .env
+```
+cp .env.exemple .env
 ```
 
 Gere a chave da aplicação
 ```
-bash-5.0# php artisan key:generate
+php artisan key:generate
 ```
 
 Execute o comando migrate
 ```
-bash-5.0# php artisan migrate
+php artisan migrate
 ```
 
 Acesse a aplicação pelo browser de sua preferência
