@@ -19,5 +19,7 @@ RUN ln -s public html
 
 #RUN php artisan migrate
 
+COPY .env.example .env
+
 EXPOSE 9000
 ENTRYPOINT [ "php-fpm" ]
