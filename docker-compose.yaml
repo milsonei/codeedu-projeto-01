@@ -1,0 +1,63 @@
+version: "3"
+
+services:
+  #PHP Service
+  app:
+    #build: .
+    image: milsonei/code-education-laravel-app
+    container_name: app
+    volumes:
+      - .:/var/www
+    networks:
+      - app-networks
+    depends_on:
+      - db
+      - redis
+
+  #Nginx Service
+  nginx:
+    image: milsonei/code-education-laravel-nginx
+    container_name: nginx
+    restart: always
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+    networks:
+      - app-networks
+    depends_on:
+      - app
+
+  #MySQL Service
+  db:
+    image: milsonei/code-education-laravel-mysql
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    ports:
+      - "33060:3306"
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: laravel
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: root
+        SERVICE_TAGS: dev
+    networks:
+      - app-networks
+
+  #Redis Service
+  redis:
+    image: milsonei/code-education-laravel-redis
+    container_name: redis
+    expose:
+      - 6379
+    networks:
+      - app-networks
+
+#Docker Networks
+networks:
+  app-networks:
+    driver: bridge
