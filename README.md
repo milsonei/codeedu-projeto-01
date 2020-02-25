@@ -4,7 +4,7 @@ Para rodar essa aplicação siga os passos abaixo:
 
 Clone o aplicativo
 ```
-git clone https://github.com/milsonei/code-education-projeto-01.git milsonei-laravel
+git clone https://github.com/milsonei/codeedu-projeto-01.git milsonei-laravel
 ```
 Mude para o diretório milsonei-laravel
 ```
